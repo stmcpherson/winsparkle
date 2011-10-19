@@ -5,7 +5,7 @@ from fabric.api import lcd, local
 
 
 _DEF_CFG = 'Release'
-_DEVENV = '"/cygdrive/c/Program Files (x86)/Microsoft Visual Studio 9.0/Common7/IDE/devenv.com"'
+_DEVENV = '"/Program Files (x86)/Microsoft Visual Studio 9.0/Common7/IDE/devenv.com"'
 _TOP_DIR = os.path.dirname(__file__)
 _DEPS_PATH = os.path.join(_TOP_DIR, '3rdparty')
 
