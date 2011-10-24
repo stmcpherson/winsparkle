@@ -1,0 +1,19 @@
+// id's for string resources
+#define IDS_TITLE                501
+#define IDS_RELEASE_NOTES        502
+#define IDS_SKIP_THIS            503
+#define IDS_REMIND_LATER         504
+#define IDS_INSTALL              505
+#define IDS_CHECKING             506
+#define IDS_CANCEL               507
+#define IDS_UP2DATE              508
+#define IDS_NEWEST               509
+#define IDS_CLOSE                510
+#define IDS_UPDATE_ERR           511
+#define IDS_UPDATE_ERR_MSG       512
+#define IDS_NEW_AVAILABLE        513
+#define IDS_ASK_DOWNLOAD         514
+#define IDS_ASK_AUTO_UPDATE      515
+#define IDS_ASK_AUTO_UPDATE_MSG  516
+#define IDS_CHECK_AUTOMATIC      517
+#define IDS_DONT_CHECK           518

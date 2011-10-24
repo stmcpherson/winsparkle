@@ -1,0 +1,38 @@
+#include "string_resources.h"
+#include "afxres.h"
+
+#ifdef APSTUDIO_INVOKED
+  #error this file is not editable by Visual C++
+#endif //APSTUDIO_INVOKED
+
+#pragma code_page(1252)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Spanish String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_TITLE                "Software Update"
+    IDS_RELEASE_NOTES        "Release Notes:"
+    IDS_SKIP_THIS            "Skip this version"
+    IDS_REMIND_LATER         "Remind me later"
+    IDS_INSTALL              "Install update"
+    IDS_CHECKING             "Checking for updates..."
+    IDS_CANCEL               "Cancel"
+    IDS_UP2DATE              "You're up to date!"
+    IDS_NEWEST               "%s %s is currently the newest version available."
+    IDS_CLOSE                "Close"
+    IDS_UPDATE_ERR           "Update Error!"
+    IDS_UPDATE_ERR_MSG       "An error occurred in retrieving update information; are you connected to the internet? Please try again later."
+    IDS_NEW_AVAILABLE        "A new version of %s is available!"
+    IDS_ASK_DOWNLOAD         "%s %s is now available (you have %s). Would you like to download it now?"
+    IDS_ASK_AUTO_UPDATE      "Check for updates automatically?"
+    IDS_ASK_AUTO_UPDATE_MSG  "Should %s automatically check for updates? You can always check for updates manually from the menu."
+    IDS_CHECK_AUTOMATIC      "Check automatically"
+    IDS_DONT_CHECK           "Don't check"
+END
+

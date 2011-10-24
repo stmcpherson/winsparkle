@@ -30,6 +30,7 @@
 #include "settings.h"
 #include "error.h"
 #include "updatechecker.h"
+#include "string_resources.h"
 
 #define wxNO_NET_LIB
 #define wxNO_XML_LIB
@@ -67,6 +68,14 @@ namespace winsparkle
 
 namespace
 {
+
+
+wxString _str(UINT strId) {
+  WCHAR* buf = NULL;
+  int    len = LoadStringW(UI::GetDllHINSTANCE(), strId, reinterpret_cast<LPWSTR>(&buf), 0);
+
+  return len? wxString(buf, len) : wxString();
+}
 
 // Locks window updates to reduce flicker. Redoes layout in dtor.
 struct LayoutChangesGuard
@@ -143,7 +152,7 @@ BOOL CALLBACK WinSparkleDialog::GetFirstIconProc(HMODULE hModule, LPCTSTR lpszTy
 }
 
 WinSparkleDialog::WinSparkleDialog()
-    : wxDialog(NULL, wxID_ANY, _("Software Update"),
+    : wxDialog(NULL, wxID_ANY, _str(IDS_TITLE),
                wxDefaultPosition, wxDefaultSize,
                wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
@@ -316,7 +325,7 @@ UpdateDialog::UpdateDialog() : m_timer(this)
 
     m_releaseNotesSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxStaticText *notesLabel = new wxStaticText(this, wxID_ANY, _("Release notes:"));
+    wxStaticText *notesLabel = new wxStaticText(this, wxID_ANY, _str(IDS_RELEASE_NOTES));
     SetBoldFont(notesLabel);
     m_releaseNotesSizer->Add(notesLabel, wxSizerFlags().Border(wxTOP, 10));
 
@@ -342,18 +351,18 @@ UpdateDialog::UpdateDialog() : m_timer(this)
     m_updateButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
     m_updateButtonsSizer->Add
                           (
-                            new wxButton(this, ID_SKIP_VERSION, _("Skip this version")),
+                            new wxButton(this, ID_SKIP_VERSION, _str(IDS_SKIP_THIS)),
                             wxSizerFlags().Border(wxRIGHT, 20)
                           );
     m_updateButtonsSizer->AddStretchSpacer(1);
     m_updateButtonsSizer->Add
                           (
-                            new wxButton(this, ID_REMIND_LATER, _("Remind me later")),
+                            new wxButton(this, ID_REMIND_LATER, _str(IDS_REMIND_LATER)),
                             wxSizerFlags().Border(wxRIGHT, 10)
                           );
     m_updateButtonsSizer->Add
                           (
-                            new wxButton(this, ID_INSTALL, _("Install update")),
+                            new wxButton(this, ID_INSTALL, _str(IDS_INSTALL)),
                             wxSizerFlags()
                           );
     m_buttonSizer->Add(m_updateButtonsSizer, wxSizerFlags(1));
@@ -454,9 +463,9 @@ void UpdateDialog::StateCheckingUpdates()
 {
     LayoutChangesGuard guard(this);
 
-    SetMessage(_("Checking for updates..."));
+    SetMessage(_str(IDS_CHECKING));
 
-    m_closeButton->SetLabel(_("Cancel"));
+    m_closeButton->SetLabel(_str(IDS_CANCEL));
     EnablePulsing(true);
 
     HIDE(m_heading);
@@ -472,14 +481,14 @@ void UpdateDialog::StateNoUpdateFound()
 {
     LayoutChangesGuard guard(this);
 
-    m_heading->SetLabel(_("You're up to date!"));
+    m_heading->SetLabel(_str(IDS_UP2DATE));
 
     wxString msg;
     try
     {
         msg = wxString::Format
               (
-                  _("%s %s is currently the newest version available."),
+                  _str(IDS_NEWEST),
                   Settings::GetAppName(),
                   Settings::GetAppVersion()
               );
@@ -492,7 +501,7 @@ void UpdateDialog::StateNoUpdateFound()
 
     SetMessage(msg);
 
-    m_closeButton->SetLabel(_("Close"));
+    m_closeButton->SetLabel(_str(IDS_CLOSE));
     EnablePulsing(false);
 
     SHOW(m_heading);
@@ -508,12 +517,12 @@ void UpdateDialog::StateUpdateError()
 {
     LayoutChangesGuard guard(this);
 
-    m_heading->SetLabel(_("Update Error!"));
+    m_heading->SetLabel(_str(IDS_UPDATE_ERR));
 
-    wxString msg = _("An error occurred in retrieving update information; are you connected to the internet? Please try again later.");
+    wxString msg = _str(IDS_UPDATE_ERR_MSG);
     SetMessage(msg);
 
-    m_closeButton->SetLabel(_("Cancel"));
+    m_closeButton->SetLabel(_str(IDS_CANCEL));
     EnablePulsing(false);
 
     SHOW(m_heading);
@@ -538,13 +547,13 @@ void UpdateDialog::StateUpdateAvailable(const Appcast& info)
         const wxString appname = Settings::GetAppName();
 
         m_heading->SetLabel(
-            wxString::Format(_("A new version of %s is available!"), appname));
+            wxString::Format(_str(IDS_NEW_AVAILABLE), appname));
 
         SetMessage
         (
             wxString::Format
             (
-                _("%s %s is now available (you have %s). Would you like to download it now?"),
+                _str(IDS_ASK_DOWNLOAD),
                 appname,
                 info.Version,
                 Settings::GetAppVersion()
@@ -668,8 +677,7 @@ public:
 AskPermissionDialog::AskPermissionDialog()
 {
     wxStaticText *heading =
-            new wxStaticText(this, wxID_ANY,
-                             _("Check for updates automatically?"));
+            new wxStaticText(this, wxID_ANY, _str(IDS_ASK_AUTO_UPDATE));
     SetHeadingFont(heading);
     m_mainAreaSizer->Add(heading, wxSizerFlags(0).Expand().Border(wxBOTTOM, 10));
 
@@ -679,7 +687,7 @@ AskPermissionDialog::AskPermissionDialog()
                     this, wxID_ANY,
                     wxString::Format
                     (
-                        _("Should %s automatically check for updates? You can always check for updates manually from the menu."),
+                        _str(IDS_ASK_AUTO_UPDATE_MSG),
                         Settings::GetAppName()
                     ),
                     wxDefaultPosition, wxSize(MESSAGE_AREA_WIDTH, -1)
@@ -693,12 +701,12 @@ AskPermissionDialog::AskPermissionDialog()
 
     buttonSizer->Add
                  (
-                     new wxButton(this, wxID_OK, _("Check automatically")),
+                     new wxButton(this, wxID_OK, _str(IDS_CHECK_AUTOMATIC)),
                      wxSizerFlags().Border(wxRIGHT)
                  );
     buttonSizer->Add
                  (
-                     new wxButton(this, wxID_CANCEL, _("Don't check"))
+                     new wxButton(this, wxID_CANCEL, _str(IDS_DONT_CHECK))
                  );
 
     m_mainAreaSizer->Add
@@ -1036,5 +1044,6 @@ void UI::AskForPermission()
     UIThreadAccess uit;
     uit.App().SendMsg(MSG_ASK_FOR_PERMISSION);
 }
+
 
 } // namespace winsparkle
