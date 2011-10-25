@@ -34,5 +34,10 @@ BEGIN
     IDS_ASK_AUTO_UPDATE_MSG  "Should %s automatically check for updates? You can always check for updates manually from the menu."
     IDS_CHECK_AUTOMATIC      "Check automatically"
     IDS_DONT_CHECK           "Don't check"
+    IDS_CLOSE_INSTALL        "Close and install"
+    IDS_DOWNLOAD_OK_MSG      "The update was downloaded successfully."
+    IDS_UPDATE_CANCELLED     "The update was cancelled due to an error."
+    IDS_UPDATING             "Updating"
+    IDS_DOWNLOADING_UPDATE   "Downloading the %s update..."
 END
 

@@ -17,3 +17,8 @@
 #define IDS_ASK_AUTO_UPDATE_MSG  516
 #define IDS_CHECK_AUTOMATIC      517
 #define IDS_DONT_CHECK           518
+#define IDS_CLOSE_INSTALL        519
+#define IDS_DOWNLOAD_OK_MSG      520
+#define IDS_UPDATE_CANCELLED     521
+#define IDS_UPDATING             522
+#define IDS_DOWNLOADING_UPDATE   523

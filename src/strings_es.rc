@@ -34,5 +34,10 @@ BEGIN
     IDS_ASK_AUTO_UPDATE_MSG  "En caso de %s de forma automática las actualizaciones?"
     IDS_CHECK_AUTOMATIC      "Comprobar de forma automática"
     IDS_DONT_CHECK           "No comprobar"
+    IDS_CLOSE_INSTALL        "Cerrar e instalar"
+    IDS_DOWNLOAD_OK_MSG      "La actualización se ha descargado correctamente."
+    IDS_UPDATE_CANCELLED     "La actualización fue cancelado debido a un error."
+    IDS_UPDATING             "actualización"
+    IDS_DOWNLOADING_UPDATE   "Descarga de la actualización %s..."
 END
 

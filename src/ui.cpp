@@ -404,8 +404,8 @@ void UpdateDialog::OnUpdateCancelled(wxCommandEvent &ev)
 	}
 	else
 	{
-		SetMessage(_("The update was cancelled due to an error."));
-		m_closeButton->SetLabelText(_("Close"));
+		SetMessage(_str(IDS_UPDATE_CANCELLED));
+		m_closeButton->SetLabelText(_str(IDS_CLOSE));
 	}
 }
 
@@ -421,8 +421,8 @@ void UpdateDialog::OnUpdateComplete(wxCommandEvent &ev)
 	HIDE(m_progress);
 	if (m_runUpdateOnClose)
 	{
-		SetMessage(_("The update was downloaded successfully."));
-		m_closeButton->SetLabelText(_("Close and install"));
+		SetMessage(_str(IDS_DOWNLOAD_OK_MSG));
+		m_closeButton->SetLabelText(_str(IDS_CLOSE_INSTALL));
 	}
 }
 
@@ -566,10 +566,10 @@ void UpdateDialog::StateRunUpdate(const Appcast& info)
 
 	m_appcast = info;
 
-	m_heading->SetLabel(_("Updating"));
-	SetMessage(wxString::Format(_("Downloading the %s update..."), appname));
+	m_heading->SetLabel(_str(IDS_UPDATING));
+	SetMessage(wxString::Format(_str(IDS_DOWNLOADING_UPDATE), appname));
 
-	m_closeButton->SetLabel(_("Cancel"));
+	m_closeButton->SetLabel(_str(IDS_CANCEL));
 	EnablePulsing(false);
 
 	SHOW(m_heading);
