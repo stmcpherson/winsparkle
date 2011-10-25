@@ -29,6 +29,7 @@
 #include "ui.h"
 #include "updater.h"
 #include "error.h"
+#include "settings.h"
 #include "resources.h"
 #include "winsparkle-resources.h"
 
@@ -120,6 +121,12 @@ void Updater::SetTotalLength(size_t length)
 
 void Updater::RunUpdate( const wxString updateFilePath )
 {
+  sparkle_upgrade_handler handler = Settings::GetUpgradeHandler();
+  if (handler) {
+    handler(updateFilePath.c_str().AsChar());
+    return;
+  }
+
 	wxFile batch;
 	wxFileName appFileName(Resources::GetExeFileName());
 	wxString batchScript(Resources::LoadString(STR_UPDATE_BATCH));
