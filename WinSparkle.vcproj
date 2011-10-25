@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="WinSparkle"
 	ProjectGUID="{F00FBD5D-F9FD-40A0-BCCE-1D619ADCA5A3}"
 	RootNamespace="WinSparkle"
@@ -204,6 +204,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\resources.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\settings.cpp"
 				>
 			</File>
@@ -219,6 +223,10 @@
 				RelativePath=".\src\updatechecker.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\updater.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -226,7 +234,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\src\resource.h"
+				RelativePath=".\src\winsparkle-resources.h"
 				>
 			</File>
 			<File
@@ -253,6 +261,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\resources.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\settings.h"
 					>
 				</File>
@@ -266,6 +278,10 @@
 				</File>
 				<File
 					RelativePath=".\src\updatechecker.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\updater.h"
 					>
 				</File>
 				<File
