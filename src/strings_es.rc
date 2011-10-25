@@ -29,7 +29,7 @@ BEGIN
     IDS_UPDATE_ERR           "Error de actualización!"
     IDS_UPDATE_ERR_MSG       "Se produjo un error al recuperar la información de actualización. Asegúrese de que está conectado a Internet y vuelva a intentarlo."
     IDS_NEW_AVAILABLE        "Una nueva versión de %s está disponible!"
-    IDS_ASK_DOWNLOAD         "s% s% ya está disponible (tiene %s). ¿Desea descargarlo ahora?"
+    IDS_ASK_DOWNLOAD         "%s %s ya está disponible (tiene %s). ¿Desea descargarlo ahora?"
     IDS_ASK_AUTO_UPDATE      "Comprobar si hay actualizaciones de forma automática?"
     IDS_ASK_AUTO_UPDATE_MSG  "En caso de %s de forma automática las actualizaciones?"
     IDS_CHECK_AUTOMATIC      "comprobar de forma automática"
