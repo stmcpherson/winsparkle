@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="WinSparkle"
 	ProjectGUID="{F00FBD5D-F9FD-40A0-BCCE-1D619ADCA5A3}"
 	RootNamespace="WinSparkle"
@@ -233,6 +233,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\src\string_resources.h"
+				>
+			</File>
 			<File
 				RelativePath=".\src\winsparkle-resources.h"
 				>
