@@ -16,13 +16,13 @@ LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
 
 STRINGTABLE 
 BEGIN
-    IDS_TITLE                "actualización de software" 
+    IDS_TITLE                "Actualización de software" 
     IDS_RELEASE_NOTES        "Notas de la versión:"
     IDS_SKIP_THIS            "Saltar esta versión"
     IDS_REMIND_LATER         "Recordármelo más tarde"
-    IDS_INSTALL              "instale la actualización"
+    IDS_INSTALL              "Instale la actualización"
     IDS_CHECKING             "Comprobación de las actualizaciones..."
-    IDS_CANCEL               "cancelar"
+    IDS_CANCEL               "Cancelar"
     IDS_UP2DATE              "Estás al día!"
     IDS_NEWEST               "%s %s es actualmente la última versión disponible"
     IDS_CLOSE                "Cerrar"
@@ -32,7 +32,7 @@ BEGIN
     IDS_ASK_DOWNLOAD         "%s %s ya está disponible (tiene %s). ¿Desea descargarlo ahora?"
     IDS_ASK_AUTO_UPDATE      "Comprobar si hay actualizaciones de forma automática?"
     IDS_ASK_AUTO_UPDATE_MSG  "En caso de %s de forma automática las actualizaciones?"
-    IDS_CHECK_AUTOMATIC      "comprobar de forma automática"
+    IDS_CHECK_AUTOMATIC      "Comprobar de forma automática"
     IDS_DONT_CHECK           "No comprobar"
 END
 
