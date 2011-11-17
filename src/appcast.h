@@ -39,6 +39,9 @@ struct Appcast
     /// App version
     std::string Version;
 
+    /// Short App version
+    std::string ShortVersion;
+
     /// URL of the update
     std::string DownloadURL;
 
@@ -62,6 +65,8 @@ struct Appcast
         @param xml Appcast feed data.
      */
     void Load(const std::string& xml);
+
+    const std::string& DisplayVersion(const std::wstring& currentVersion) const;
 };
 
 } // namespace winsparkle

@@ -24,7 +24,9 @@
  */
 
 #include "appcast.h"
+#include "updatechecker.h"
 #include "error.h"
+#include "utils.h"
 
 #include <expat.h>
 
@@ -45,14 +47,15 @@ namespace
 #define NS_SEP          '#'
 #define NS_SPARKLE_NAME(name) NS_SPARKLE "#" name
 
-#define NODE_CHANNEL    "channel"
-#define NODE_ITEM       "item"
-#define NODE_RELNOTES   NS_SPARKLE_NAME("releaseNotesLink")
-#define NODE_TITLE "title"
-#define NODE_DESCRIPTION "description"
-#define NODE_ENCLOSURE  "enclosure"
-#define ATTR_URL        "url"
-#define ATTR_VERSION    NS_SPARKLE_NAME("version")
+#define NODE_CHANNEL        "channel"
+#define NODE_ITEM           "item"
+#define NODE_RELNOTES       NS_SPARKLE_NAME("releaseNotesLink")
+#define NODE_TITLE          "title"
+#define NODE_DESCRIPTION    "description"
+#define NODE_ENCLOSURE      "enclosure"
+#define ATTR_URL            "url"
+#define ATTR_VERSION        NS_SPARKLE_NAME("version")
+#define ATTR_SHORT_VERSION  NS_SPARKLE_NAME("shortVersionString")
 
 
 // context data for the parser
@@ -112,6 +115,8 @@ void XMLCALL OnStartElement(void *data, const char *name, const char **attrs)
                     ctxt.appcast.DownloadURL = value;
                 else if ( strcmp(name, ATTR_VERSION) == 0 )
                     ctxt.appcast.Version = value;
+                else if ( strcmp(name, ATTR_SHORT_VERSION) == 0 )
+                    ctxt.appcast.ShortVersion = value;
             }
         }
     }
@@ -189,6 +194,37 @@ void Appcast::Load(const std::string& xml)
     }
 
     XML_ParserFree(p);
+}
+
+const std::string& Appcast::DisplayVersion(const std::wstring& currentVersion) const
+{
+    // if the current and new versions match their <major>.<minor>, our display version
+    // should be the full version. Otherwise show the specified short version as the
+    // displayed version
+    std::vector<std::string> currParts = UpdateChecker::SplitVersionString(WideToAnsi(currentVersion));
+    std::vector<std::string> newParts  = UpdateChecker::SplitVersionString(Version);
+    std::vector<std::string> shortParts = UpdateChecker::SplitVersionString(ShortVersion);
+
+    // For versions that match a major.minor.<something> we want to display
+    bool mostlyMatches = false;
+    if ((currParts.size() == newParts.size()) && (currParts.size() > shortParts.size())) {
+        int numMatches = 0;
+        for (int i = 0; i < currParts.size(); i++) {
+            if (currParts[i] != newParts[i])
+              break;
+            ++numMatches;
+        }
+
+        if (numMatches >= shortParts.size()) {
+            mostlyMatches = true;
+        }
+    }
+
+    if (mostlyMatches) {
+        return Version;
+    } else {
+        return ShortVersion.empty() ? Version : ShortVersion;
+    }  
 }
 
 } // namespace winsparkle

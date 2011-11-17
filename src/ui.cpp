@@ -611,7 +611,7 @@ void UpdateDialog::StateUpdateAvailable(const Appcast& info)
             (
                 _str(IDS_ASK_DOWNLOAD),
                 appname,
-                info.Version,
+                info.DisplayVersion(Settings::GetAppVersion()).c_str(),
                 Settings::GetAppVersion()
             ),
             showRelnotes ? RELNOTES_WIDTH : MESSAGE_AREA_WIDTH

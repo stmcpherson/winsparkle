@@ -29,6 +29,7 @@
 #include "threads.h"
 
 #include <string>
+#include <vector>
 
 namespace winsparkle
 {
@@ -56,6 +57,8 @@ public:
                 is larger than @a b.
      */
     static int CompareVersions(const std::string& a, const std::string& b);
+
+    static std::vector<std::string> SplitVersionString(const std::string& version);
 
 protected:
     /// Returns flags to be used when checking the appcast

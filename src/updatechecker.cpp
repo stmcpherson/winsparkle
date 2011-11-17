@@ -33,7 +33,6 @@
 #include "utils.h"
 
 #include <ctime>
-#include <vector>
 #include <cstdlib>
 #include <algorithm>
 
@@ -71,10 +70,13 @@ CharType ClassifyChar(char c)
         return Type_String;
 }
 
+} // anonymous namespace
+
+
 // Split version string into individual components. A component is continuous
 // run of characters with the same classification. For example, "1.20rc3" would
 // be split into ["1",".","20","rc","3"].
-vector<string> SplitVersionString(const string& version)
+vector<string> UpdateChecker::SplitVersionString(const string& version)
 {
     vector<string> list;
 
@@ -114,9 +116,6 @@ vector<string> SplitVersionString(const string& version)
 
     return list;
 }
-
-} // anonymous namespace
-
 
 int UpdateChecker::CompareVersions(const string& verA, const string& verB)
 {
