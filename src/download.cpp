@@ -60,8 +60,36 @@ struct InetHandle
     HINTERNET m_handle;
 };
 
-} // anonymous namespace
+/**
+ * This is terrible, we look for a gzip content type, and if it's there, perform 
+ * a second request after preparing the http handle for decoding it. Why not a 
+ * single request? Because when using the INTERNET_OPTION_HTTP_DECODING flag, 
+ * the Content-Length header is mysteriously striped away from the response.
+ * See: http://social.msdn.microsoft.com/Forums/en-US/ieextensiondevelopment/thread/01375c7c-1ce2-4a69-8c0f-c531360ec152/
+ */
+void prepareForGzipIfNecessary(InetHandle& http)
+{
+    char contentType[1024];
+    DWORD contentTypeLength = sizeof(contentType);
+    if (!HttpQueryInfoA(http, HTTP_QUERY_CONTENT_ENCODING, contentType, &contentTypeLength, NULL)) {
+        return;
+    }
 
+    if (std::string(contentType) != "gzip") {
+        return;
+    }
+
+    BOOL decoding = TRUE;
+    if (!InternetSetOption(http, INTERNET_OPTION_HTTP_DECODING, &decoding, sizeof(decoding))) {
+        throw Win32Exception();
+    }
+
+    if (!HttpSendRequestA(http, "Accept-Encoding: gzip", -1, NULL, 0)) {
+        throw Win32Exception();
+    }
+}
+
+} // anonymous namespace
 
 /*--------------------------------------------------------------------------*
                                 DownloadFile()
@@ -133,6 +161,9 @@ void DownloadFile(const std::string& url, IDownloadSink *sink, int flags)
 		if (HttpQueryInfoA(http, HTTP_QUERY_CONTENT_LENGTH, buffer, &bufLength, &hdrIndex))
 		{
 			sink->SetTotalLength(atol(buffer));
+
+			prepareForGzipIfNecessary(http);
+            
 			for ( ;; )
 			{
 				DWORD read;
