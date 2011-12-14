@@ -144,6 +144,9 @@ void DownloadFile(const std::string& url, IDownloadSink *sink, int flags)
 	DWORD dwFlags = 0;
 	if ( flags & Download_NoCached )
 		dwFlags |= INTERNET_FLAG_PRAGMA_NOCACHE | INTERNET_FLAG_RELOAD;
+	if (urlc.nScheme == INTERNET_SCHEME_HTTPS) {
+		dwFlags |= INTERNET_FLAG_SECURE;
+	}
 
 	std::string fullUrl(path);
 	fullUrl += extra;
