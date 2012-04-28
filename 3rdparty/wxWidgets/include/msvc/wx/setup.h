@@ -52,7 +52,7 @@
     wxCONCAT5(../../../lib/, wxLIB_SUBDIR, /msw, wxSUFFIX, /wx/setup.h)
 #define wxSETUPH_PATH_STR wxSTRINGIZE(wxSETUPH_PATH)
 
-#include wxSETUPH_PATH_STR
+#include "..\..\wx\msw\setup.h"
 
 
 // the library names depend on the build, these macro builds the correct

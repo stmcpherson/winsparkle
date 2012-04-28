@@ -1,12 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinSparkle", "WinSparkle.vcproj", "{F00FBD5D-F9FD-40A0-BCCE-1D619ADCA5A3}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinSparkle", "WinSparkle.vcxproj", "{F00FBD5D-F9FD-40A0-BCCE-1D619ADCA5A3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example_psdk", "examples\psdk\example_psdk.vcproj", "{1C6A0960-D5A1-4A8F-854D-8CFA999C5A25}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F00FBD5D-F9FD-40A0-BCCE-1D619ADCA5A3} = {F00FBD5D-F9FD-40A0-BCCE-1D619ADCA5A3}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example_psdk", "examples\psdk\example_psdk.vcxproj", "{1C6A0960-D5A1-4A8F-854D-8CFA999C5A25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

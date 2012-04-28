@@ -333,11 +333,11 @@ UpdateDialog::UpdateDialog() : m_timer(this)
     m_buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 
     m_updateButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
-    m_updateButtonsSizer->Add
-                          (
-                            new wxButton(this, ID_SKIP_VERSION, _str(IDS_SKIP_THIS)),
-                            wxSizerFlags().Border(wxRIGHT, 20)
-                          );
+    //m_updateButtonsSizer->Add
+    //                      (
+    //                        new wxButton(this, ID_SKIP_VERSION, _str(IDS_SKIP_THIS)),
+    //                        wxSizerFlags().Border(wxRIGHT, 20)
+    //                      );
     m_updateButtonsSizer->AddStretchSpacer(1);
     m_updateButtonsSizer->Add
                           (
